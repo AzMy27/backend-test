@@ -7,20 +7,22 @@ const reportSchema = new Schema({
     type: String,
     required: true,
   },
+  place: {
+    type: String,
+    required: true,
+  },
   date: {
     type: Date,
     required: true,
   },
-  images: {
-    type: Buffer,
+  description: {
+    type: String,
     required: true,
   },
-  // images: [
-  //   {
-  //     url: String,
-  //     filename: String,
-  //   },
-  // ],
+  images: {
+    type: [String],
+    required: true,
+  },
 });
 
 // module.exports = mongoose.model("Report", reportSchema);

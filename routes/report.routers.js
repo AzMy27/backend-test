@@ -1,10 +1,3 @@
-// const router = require("express").Router();
-// const ReportController = require("../controllers/report.controlers");
-
-// router.post("/reports", ReportController.createReport);
-
-// module.exports = router;
-
 const express = require("express");
 const router = express.Router();
 const ReportController = require("../controllers/report.controlers");
