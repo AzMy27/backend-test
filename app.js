@@ -22,5 +22,5 @@ app.get("/", (req, res) => {
   res.render("home");
 });
 
-app.use("/", ReportRouters);
+app.use("/reports", ReportRouters);
 module.exports = app;
