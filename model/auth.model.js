@@ -1,6 +1,6 @@
-const db = require("../config/db");
 const mongoose = require("mongoose");
 const { Schema } = mongoose;
+const passportLocalMongoose = require("passport-local-mongoose");
 
 const userSchema = new Schema({
   email: {
