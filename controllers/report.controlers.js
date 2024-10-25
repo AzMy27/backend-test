@@ -1,14 +1,34 @@
-const ReportServices = require("../services/report.services");
+const ReportModel = require("../model/report.model");
 
-exports.createReport = async (req, res, next) => {
+module.exports.index = async (req, res, next) => {
+  try {
+    const reports = await ReportModel.find();
+    res.json({ status: true, reports });
+    res.render("reports/show");
+  } catch (error) {
+    next(error);
+  }
+};
+
+module.exports.store = async (req, res, next) => {
   try {
     const { title, date, place, description } = req.body;
-    if (!req.file) {
-      return res.status(400).json({ status: false, message: "No file uploaded." });
+
+    if (!req.files || req.files.length === 0) {
+      return res.status(400).json({ status: false, message: "No files uploaded." });
     }
-    const images = req.file.path;
-    let report = await ReportServices.createReport(title, date, place, description, images);
-    res.json({ status: true, success: report });
+
+    const images = req.files.map((file) => file.path);
+
+    let report = await ReportModel.create({
+      title,
+      date,
+      place,
+      description,
+      images,
+    });
+
+    res.status(201).json({ status: true, report });
   } catch (error) {
     next(error);
   }
